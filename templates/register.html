@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='./css/registration.css')}}">
+    <!-- <Script src="../static/js/register.js"></Script> -->
+    <title>Register</title>
+</head>
+<body>
+    <div class="registration-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="error-message">
+            <p>An error has been detected, please enter valid data</p>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="">
+            {{form.hidden_tag()}}
+
+            <label for="username">Username</label>
+            {{form.username}}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                <div class="error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <label for="email">Email</label>
+            {{form.email}}
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                <div class="error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password-input">
+            <div id="password-validation"></div>
+
+            <Script src="../static/js/register.js"></Script>
+
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                <div class="error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- <label for="password">Password</label>
+            {{form.password}} -->
+            <!-- <label for="password">Password</label>
+            <input type="password" name="password" id="password-input" oninput="validatePassword()">
+            <div id="password-validation"></div> -->
+            <!-- <label for="password">Password</label>
+            <input type="password" name="password" id="password-input" oninput="validatePassword()">
+            <div id="password-validation"></div>
+            {{ form.password }}
+             -->
+            
+
+            <label for="confirm_password">Confirm Password</label>
+            {{form.confirm_password}}
+            {% if form.confirm_password.errors %}
+                {% for error in form.confirm_password.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <input type="submit" value="Register">
+        </form>
+
+        <div class="additional-info">
+            <a href="{{url_for('login')}}">Already have an account? Login in</a>
+        </div>
+    </div>
+</body>
+</html>

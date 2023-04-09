@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Library</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">My Library</a>
+        </div>
+        <div class="search">
+            <form action="#" method="get">
+                <input type="text" name="search" placeholder="Search Books...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <!-- <script src="../static/js/search_manager.js"></script> -->
+      
+
+
+        <div class="buttons">
+            <a href="{{url_for('register')}}"><button class="register">Register</button></a>
+            <a href="{{url_for('login')}}"><button class="login">Login</button></a>
+        </div>
+    </header>
+    <div class="cover-image">
+    </div>
+  
+
+    <main>
+        <div class="book-container">
+            {% for book in books %}
+            <div class="book">
+                <img src="{{ book.image_url }}" alt="{{ book.book_title }} Cover">
+                <div class="book-info">
+                    <h2>{{ book.book_title }}</h2>
+                    <p><strong>Author:</strong> {{ book.book_authors.split('|')[:3]|join(', ') }}</p>
+                    <p><strong>Genres:</strong> <span class="book-genres">{{ book.genres.split('|')[:3]|join(', ') }}</span></p>
+                    <div class="book-ratings">
+                        <p><strong>Rating:</strong> {{ book.book_rating }}</p>
+                        <p><strong>Rating Count:</strong> {{ book.book_rating_count }}</p>
+                        <p><strong>Review Count:</strong> {{ book.book_review_count }}</p>
+                    </div>
+                    <p class="book-description"><strong>Description:</strong> {{ book.book_desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+          
+  
+
+    </main>
+    <footer>
+        <p>&copy; My Library 2023</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Library</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/dashboard">My Library</a>
+        </div>
+        <div class="search">
+            <form action="#" method="get">
+                <input type="text" name="search" placeholder="Search Books...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="buttons">
+            <a href="/dashboard"><button class="nav-button">All Books</button></a>
+            <form method="GET" action="#">
+              <input type="hidden" name="read-books" value="true">
+              <button class="nav-button" id="read-books" type="submit">Read books</button>
+            </form>
+            <a href="/find_your_book"><button class="nav-button">Find Your Book</button></a>
+            <a href="{{url_for('logout')}}"><button class="nav-button login-button">Logout</button></a>
+          </div>
+    </header>
+
+    <div class="cover-image">
+    </div>
+
+    <main>
+        <div class="book-container">
+            {% for book in books %}
+            <div class="book">
+                <img src="{{ book.image_url }}" alt="{{ book.book_title }} Cover">
+                <div class="book-info">
+                    <h2>{{ book.book_title }}</h2>
+                    <p><strong>Author:</strong> {{ book.book_authors.split('|')[:3]|join(', ') }}</p>
+                    <p><strong>Genres:</strong> <span class="book-genres">{{ book.genres.split('|')[:3]|join(', ') }}</span></p>
+                    <div class="book-ratings">
+                        <p><strong>Rating:</strong> {{ book.book_rating }}</p>
+                        <p><strong>Rating Count:</strong> {{ book.book_rating_count }}</p>
+                        <p><strong>Review Count:</strong> {{ book.book_review_count }}</p>
+                    </div>
+                    <p class="book-description"><strong>Description:</strong> {{ book.book_desc }}</p>
+                    {% if book.book_isbn in read_books_isbn %}
+                        <p id="already-read">Already read</p>
+                    {% else %}
+                        <button class="read-btn" data-book-id="{{ book.book_isbn }}">Add to the list of books read</button>
+                    {% endif %}
+                
+                
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </main>
+    <script src="../static/js/read_books.js"></script>
+    <footer>
+        <p>&copy; My Library 2023</p>
+    </footer>
+</body>
+</html>
