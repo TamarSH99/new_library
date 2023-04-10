@@ -1,5 +1,9 @@
 # new_library
 
+La description générale:
+
+Cette application permet à ses utilisateurs de visualiser les livres disponibles dans leur bibliothèque et de les retrouver facilement. De plus, elle permet de tenir une liste des livres déjà lus et propose des recommandations pour les prochaines lectures (cette partie n'est pas encore réalisée). En somme, cette application est un outil pratique pour tous les amoureux de la lecture qui souhaitent organiser et enrichir leur bibliothèque personnelle.
+
 Fonctionnalités de l'application :
 
 1) Enregistrer un nouvel utilisateur en tant que l'utilisateur normal ou l'administrateur(Seulement l'administrateur a le droit de créer un nouvel administrateur)
